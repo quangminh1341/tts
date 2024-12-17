@@ -2,6 +2,7 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
 const googleTTS = require('google-tts-api');
+const port = process.env.PORT || 4000;
 require('dotenv').config();
 
 // Tạo client Discord
