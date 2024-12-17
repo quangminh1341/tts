@@ -69,7 +69,9 @@ function greetUser(member) {
 // Sự kiện khi bot kết nối
 client.once('ready', () => {
     console.log(`Bot đã sẵn sàng! Đăng nhập với tên: ${client.user.tag}`);
-    client.user.setActivity('!tts', { type: 'LISTENING' });
+    client.user.setActivity('!tts', { type: 'LISTENING' })
+        .then(() => console.log(`Trạng thái set thành 'lắng nghe !tts'`))
+        .catch(console.error);
 });
 
 // Xử lý khi người dùng tham gia kênh thoại
