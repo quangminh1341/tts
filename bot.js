@@ -42,7 +42,7 @@ function isUserAloneInAllChannels(guild, userId) {
 }
 
 // Hàm phát lời chào tới người dùng
-function greetUser(member) {
+async function greetUser(member) {
     const displayName = member.displayName;
     let messageText;
 
@@ -67,11 +67,22 @@ function greetUser(member) {
 }
 
 // Sự kiện khi bot kết nối
-client.once('ready', () => {
+client.once('ready', async () => {
     console.log(`Bot đã sẵn sàng! Đăng nhập với tên: ${client.user.tag}`);
-    client.user.setActivity('!tts', { type: 'LISTENING' })
-        .then(() => console.log(`Trạng thái set thành 'Lắng nghe !tts'`))
-        .catch(console.error);
+    
+    if (client.user) {
+        try {
+            await client.user.setPresence({
+                activities: [{ name: '!tts', type: 'LISTENING' }],
+                status: 'online',
+            });
+            console.log(`Trạng thái set thành 'lắng nghe !tts'`);
+        } catch (error) {
+            console.error('Lỗi khi set trạng thái:', error);
+        }
+    } else {
+        console.log('Client.user không khả dụng.');
+    }
 });
 
 // Xử lý khi người dùng tham gia kênh thoại
