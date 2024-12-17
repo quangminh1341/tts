@@ -162,3 +162,5 @@ client.on('messageCreate', async (message) => {
         leaveTimeout = null;
     }
 });
+
+client.login('process.env.TOKEN');
