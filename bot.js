@@ -163,4 +163,4 @@ client.on('messageCreate', async (message) => {
     }
 });
 
-client.login('YOUR_DISCORD_BOT_TOKEN');
+client.login(process.env.TOKEN);
