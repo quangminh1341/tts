@@ -70,7 +70,7 @@ function greetUser(member) {
 client.once('ready', () => {
     console.log(`Bot đã sẵn sàng! Đăng nhập với tên: ${client.user.tag}`);
     client.user.setActivity('!tts', { type: 'LISTENING' })
-        .then(() => console.log(`Trạng thái set thành 'lắng nghe !tts'`))
+        .then(() => console.log(`Trạng thái set thành 'Lắng nghe !tts'`))
         .catch(console.error);
 });
 
