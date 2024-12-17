@@ -110,8 +110,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
                 leaveTimeout = null;
             }
 
-            // Đợi 2 giây rồi chào người dùng
-            setTimeout(() => greetUser(newState.member), 2000);
+            // Đợi 1 giây rồi chào người dùng
+            setTimeout(() => greetUser(newState.member), 1000);
         } 
         // Chào người dùng mới vào kênh mà bot đã ở
         else if (voiceConnection && voiceConnection.joinConfig.channelId === newChannel.id) {
