@@ -1,8 +1,9 @@
-// Import các thư viện cần thiết
 const { Client, GatewayIntentBits } = require('discord.js');
 const { joinVoiceChannel, createAudioPlayer, createAudioResource } = require('@discordjs/voice');
 const googleTTS = require('google-tts-api');
 require('dotenv').config();
+const express = require('express');
+const http = require('http');
 
 // Tạo client Discord
 const client = new Client({
@@ -162,3 +163,15 @@ client.on('messageCreate', async (message) => {
         leaveTimeout = null;
     }
 });
+
+// Tạo server HTTP
+const port = 3000;
+const app = express();
+const server = http.createServer(app);
+
+// Khởi động server
+server.listen(port, () => {
+    console.log(`Server đang chạy trên http://localhost:${port}`);
+});
+
+client.login(process.env.TOKEN);
