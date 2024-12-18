@@ -127,7 +127,7 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 
 // Xử lý tin nhắn văn bản
 client.on('messageCreate', async (message) => {
-    if (message.author.bot || !message.content.startsWith('!tts')) return;
+    if (message.author.bot || !message.content.startsWith('!m')) return;
 
     // Lấy nội dung sau "!tts"
     const text = message.content.slice(5).trim();
