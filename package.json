@@ -11,6 +11,7 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
+    "@discordjs/voice": "^0.18.0",
     "@google-cloud/text-to-speech": "^5.7.0",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.7",
