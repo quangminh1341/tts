@@ -1,0 +1,4 @@
+git pull origin master
+git add .
+git commit -m "Updated code from Visual Studio Code"
+git push origin master
