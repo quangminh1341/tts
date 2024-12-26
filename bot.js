@@ -101,8 +101,12 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 
     if (newState.member.user.bot) return;
 
+    const oldChannel = oldState.channel;
     const newChannel = newState.channel;
-    if (newChannel) {
+
+    // Kiểm tra nếu người dùng mới tham gia kênh thoại
+    if (newChannel && oldChannel !== newChannel) {
+        // Nếu bot chưa ở trong kênh hoặc ở kênh khác, tham gia kênh thoại
         if (!voiceConnection || voiceConnection.joinConfig.channelId !== newChannel.id) {
             voiceConnection = joinVoiceChannel({
                 channelId: newChannel.id,
@@ -116,11 +120,12 @@ client.on('voiceStateUpdate', (oldState, newState) => {
             leaveTimeout = null;
         }
 
-        setTimeout(() => greetUser(newState.member), 2000);
+        setTimeout(() => greetUser(newState.member), 2000); // Gửi lời chào sau 2 giây
     }
 
-    if (oldState.channel) {
-        checkAndLeaveChannel(oldState.channel);
+    // Kiểm tra nếu người dùng rời khỏi kênh thoại
+    if (oldChannel && !newChannel) {
+        checkAndLeaveChannel(oldChannel);
     }
 });
 
@@ -228,6 +233,5 @@ const server = http.createServer(app);
 server.listen(port, () => {
     console.log(`Server đang chạy trên http://localhost:${port}`);
 });
-
 
 client.login(process.env.TOKEN);
